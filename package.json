@@ -1,0 +1,23 @@
+{
+  "name": "graphql",
+  "version": "1.0.0",
+  "description": "graphql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yupoy/graphql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yupoy/graphql/issues"
+  },
+  "homepage": "https://github.com/yupoy/graphql#readme",
+  "dependencies": {
+    "graphql-yoga": "^1.17.4"
+  }
+}

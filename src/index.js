@@ -41,7 +41,6 @@ let postlist = [{
     },
 ]
 
-let postcount = postlist.length + 1
 
 // 2
 const resolvers = {
@@ -52,7 +51,7 @@ const resolvers = {
         post: (_, args) => postlist[args.id-1],
         posts: (_, args) => {
             if(args.filter != null){
-                return postlist
+                return postlist.filter(desc => desc.description == args.filter)
             } else {
                 return postlist
             }
@@ -60,6 +59,7 @@ const resolvers = {
     },
     Mutation: {
         createPost: (parent, args) => {
+            let postcount = postlist.length + 1
             const post = {
                 id: postcount++,
                 description: args.description,
@@ -68,8 +68,20 @@ const resolvers = {
             postlist.push(post)
             return post
         },
-        // deletePost: (parent, args) => {
-        // }
+        deletePost: (parent, args) => {
+            var post
+            var x = postlist.findIndex(id => id.id == args.id)
+            while (x != -1){
+                post = {
+                    id: postlist[x].id,
+                    description: postlist[x].description,
+                    imageUrl: postlist[x].imageUrl,
+                }
+                postlist.splice(x,1)
+                x = postlist.findIndex(id => id.id == args.id)
+            }
+            return post
+        }
     },
     Person: {
         id: (parent) => parent.id,

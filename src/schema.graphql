@@ -8,7 +8,7 @@ type Query {
 
 type Mutation {
     createPost(description: String!, imageUrl: String!): Post!
-    # deletePost(id: Int!): Post!
+    deletePost(id: Int!): Post!
 }
 
 type Person {

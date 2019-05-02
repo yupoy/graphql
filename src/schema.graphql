@@ -1,0 +1,26 @@
+type Query {
+    hello: String
+    people: [Person]
+    person(id: Int!): Person
+    post(id: Int!): Post
+    posts(filter: String): [Post]
+}
+
+type Mutation {
+    createPost(description: String!, imageUrl: String!): Post!
+    # deletePost(id: Int!): Post!
+}
+
+type Person {
+    id: Int!
+    firstName: String
+    lastName: String
+    fullName: String
+    email: String
+}
+
+type Post {
+    id: Int!
+    description: String
+    imageUrl: String
+}

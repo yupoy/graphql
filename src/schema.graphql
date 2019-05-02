@@ -11,6 +11,10 @@ type Mutation {
     deletePost(id: Int!): Post!
 }
 
+type Subscription {
+    newPost: Post
+}
+
 type Person {
     id: Int!
     firstName: String

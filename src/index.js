@@ -1,4 +1,4 @@
-const { GraphQLServer } = require('graphql-yoga')
+const { GraphQLServer, PubSub } = require('graphql-yoga')
 
 // 1
 let persons = [{
@@ -41,6 +41,7 @@ let postlist = [{
     },
 ]
 
+const pubsub = new PubSub()
 
 // 2
 const resolvers = {
@@ -66,6 +67,7 @@ const resolvers = {
                 imageUrl: args.imageUrl,
             }
             postlist.push(post)
+            pubsub.publish('test', { newPost: post })
             return post
         },
         deletePost: (parent, args) => {
@@ -83,6 +85,11 @@ const resolvers = {
             return post
         }
     },
+    Subscription: {
+        newPost: {
+            subscribe: () => pubsub.asyncIterator('test'),
+        }
+    },
     Person: {
         id: (parent) => parent.id,
         firstName: (parent) => parent.firstName,
@@ -92,6 +99,15 @@ const resolvers = {
         likedPosts: (parent) => {
             let likedPost = []
             let post
+            // parent.likedPosts.array.forEach(element => {
+            //     let x = postlist.findIndex(id => id.id == element)
+            //     post =  {
+            //         id: postlist[x].id,
+            //         description: postlist[x].description,
+            //         imageUrl: postlist[x].imageUrl,
+            //     }
+            //     likedPost.push(post)
+            // });
             for (let i=0; i < parent.likedPosts.length; i++){
                 let x = postlist.findIndex(id => id.id == parent.likedPosts[i])
                 post =  {

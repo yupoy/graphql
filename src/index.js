@@ -2,40 +2,37 @@ const { GraphQLServer } = require('graphql-yoga')
 
 // 1
 let persons = [{
-        id: '1',
+        id: 1,
         firstName: 'Michael',
         lastName: 'Suyama',
-        fullName: 'Michael Suyama',
         email: 'suyama@wp.co'
       },
       {
-        id: '2',
+        id: 2,
         firstName: 'Nancy',
         lastName: 'DaVolio',
-        fullName: 'Nancy DaVolio',
         email: 'davolio@wp.co'
       },
       {
-        id: '3',
+        id: 3,
         firstName: 'David',
         lastName: 'Buchanan',
-        fullName: 'David Buchanan',
         email: 'buchanan@wp.co'
       },
 ]
 
 let postlist = [{
-        id: '1',
+        id: 1,
         description: 'Introduction to GraphQL',
         imageUrl: 'google.com'
       },
       {
-        id: '2',
+        id: 2,
         description: 'Welcome to POC',
         imageUrl: 'microsoft.com'
       },
       {
-        id: '3',
+        id: 3,
         description: 'Advanced GraphQL',
         imageUrl: 'yahoo.com'
     },
@@ -69,8 +66,8 @@ const resolvers = {
             return post
         },
         deletePost: (parent, args) => {
-            var post
-            var x = postlist.findIndex(id => id.id == args.id)
+            let post
+            let x = postlist.findIndex(id => id.id == args.id)
             while (x != -1){
                 post = {
                     id: postlist[x].id,
@@ -87,7 +84,7 @@ const resolvers = {
         id: (parent) => parent.id,
         firstName: (parent) => parent.firstName,
         lastName: (parent) => parent.lastName,
-        fullName: (parent) => parent.fullName,
+        fullName: (parent) => parent.firstName + " " + parent.lastName,
         email: (parent) => parent.email,
     },
     Post: {

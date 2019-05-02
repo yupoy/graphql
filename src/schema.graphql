@@ -17,6 +17,7 @@ type Person {
     lastName: String
     fullName: String
     email: String
+    likedPosts: [Post]
 }
 
 type Post {

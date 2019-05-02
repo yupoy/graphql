@@ -5,19 +5,44 @@ let persons = [{
         id: 1,
         firstName: 'Michael',
         lastName: 'Suyama',
-        email: 'suyama@wp.co'
+        email: 'suyama@wp.co',
+        likedPosts: [{
+            id: 1,
+            description: 'Introduction to GraphQL',
+            imageUrl: 'google.com'
+        },
+        {
+            id: 2,
+            description: 'Welcome to POC',
+            imageUrl: 'microsoft.com'
+        }]
       },
       {
         id: 2,
         firstName: 'Nancy',
         lastName: 'DaVolio',
-        email: 'davolio@wp.co'
+        email: 'davolio@wp.co',
+        likedPosts: [{
+            id: 1,
+            description: 'Introduction to GraphQL',
+            imageUrl: 'google.com'
+        }]
       },
       {
         id: 3,
         firstName: 'David',
         lastName: 'Buchanan',
-        email: 'buchanan@wp.co'
+        email: 'buchanan@wp.co',
+        likedPosts: [{
+            id: 2,
+            description: 'Welcome to POC',
+            imageUrl: 'microsoft.com'
+        },
+        {
+            id: 3,
+            description: 'Advanced GraphQL',
+            imageUrl: 'yahoo.com'
+        }]
       },
 ]
 
@@ -86,6 +111,7 @@ const resolvers = {
         lastName: (parent) => parent.lastName,
         fullName: (parent) => parent.firstName + " " + parent.lastName,
         email: (parent) => parent.email,
+        likedPosts: (parent) => parent.likedPosts,
     },
     Post: {
         id: (parent) => parent.id,

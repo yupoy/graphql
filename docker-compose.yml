@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  graphql:
+    image: graphql
+    container_name: graphql
+    build: .
+    ports:
+      - "4000:4000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
